@@ -44,7 +44,8 @@ void process_date(char *yearbyte, char *monthbyte, char *daybyte)
   uint16_t day = (*daybyte & 0xf) + ((*daybyte >> 4) * 10);
   // get number of days since 1980
   uint16_t days_since_1980 = day_number_1980(year, month, day);
-  // correct the number of days - add our 1024 weeks - this will be wrong again in 2038
+  // correct the number of days - add our 1024 weeks - this will be wrong again in 2041 
+  // (GN-80 starts from 2002-05-19, rolled over 2022-01-02, next rollover 2041-08-18)
   days_since_1980 = days_since_1980 + (1024 * 7);
   // change our year, month, day values
   date_1980(days_since_1980, &year, &month, &day);
